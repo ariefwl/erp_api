@@ -1,0 +1,1 @@
+{"name":"sqlserver-backend","version":"1.0.0","main":"src/index.js","scripts":{"start":"node src/index.js","dev":"nodemon --watch src --exec node src/index.js"},"dependencies":{"cors":"^2.8.5","dotenv":"^16.6.1","express":"^4.21.2","mssql":"^9.3.2"},"devDependencies":{"nodemon":"^2.0.22"},"keywords":[],"author":"","license":"ISC","description":""}
