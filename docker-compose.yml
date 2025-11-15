@@ -4,5 +4,5 @@ services:
     container_name: erp-be
     env_file: ./.env
     ports:
-      - '3001:3000'
+      - '3001:3001'
     restart: unless-stopped

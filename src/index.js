@@ -3,6 +3,7 @@ import cors from 'cors';
 import { poolPromise } from './db.js';
 import dotenv from 'dotenv';
 import purchase from './routes/purchase.js';
+import materialUse from './routes/materialUse.js';
 
 dotenv.config();
 
@@ -16,10 +17,11 @@ app.use(cors({
 
 app.use(express.json());
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 
 app.use('/api/purchase', purchase);
+app.use('/api/material-use', materialUse);
 
 // Test endpoint untuk cek koneksi
 app.get('/api/test-db', async (req, res) => {
