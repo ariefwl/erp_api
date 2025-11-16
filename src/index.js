@@ -2,8 +2,14 @@ import express from 'express';
 import cors from 'cors';
 import { poolPromise } from './db.js';
 import dotenv from 'dotenv';
+import auth from './routes/auth.js';
 import purchase from './routes/purchase.js';
 import materialUse from './routes/materialUse.js';
+import finishedGoods from './routes/finishedGoods.js';
+import sales from './routes/sales.js';
+import materialMutation from './routes/materialMutation.js';
+import FGMutation from './routes/FGMutation.js';
+import waste from './routes/waste.js';
 
 dotenv.config();
 
@@ -19,9 +25,14 @@ app.use(express.json());
 
 const PORT = process.env.PORT || 3001;
 
-
+app.use('/api/auth', auth);
 app.use('/api/purchase', purchase);
 app.use('/api/material-use', materialUse);
+app.use('/api/finished-goods', finishedGoods);
+app.use('/api/sales', sales);
+app.use('/api/material-mutation', materialMutation);
+app.use('/api/finished-goods-mutation', FGMutation);
+app.use('/api/waste', waste);
 
 // Test endpoint untuk cek koneksi
 app.get('/api/test-db', async (req, res) => {
