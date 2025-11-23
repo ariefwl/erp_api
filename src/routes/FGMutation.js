@@ -21,7 +21,7 @@ router.get('/', async (req, res) => {
             FROM BC_Data.dbo.FGMutation fg 
             LEFT JOIN JIData.dbo.Inventory i 
                 ON fg.ItemCode = i.PartNo 
-            WHERE  Period = '202401'`);
+            WHERE  fg.period = @period`);
         res.json(result.recordset);
     } catch (error) {
         res.status(500).json({ 

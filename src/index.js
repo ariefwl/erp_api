@@ -16,7 +16,9 @@ dotenv.config();
 const app = express();
 
 app.use(cors({
-  origin: '*', // izinkan semua domain
+  origin: ['https://report.jansenindonesia.com', 'http://localhost:3000'],
+  // origin: 'http://localhost:3000',
+  credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));

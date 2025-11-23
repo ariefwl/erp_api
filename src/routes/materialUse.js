@@ -22,9 +22,9 @@ router.get('/', async (req, res) => {
             f.FacilitiesName, 
             m.WasteQty
             FROM [BC_Data].dbo.MaterialUsed m 
-            INNER JOIN [JIData].dbo.Inventory i 
+            LEFT JOIN [JIData].dbo.Inventory i 
                 ON m.ItemCode = i.PartNo 
-            INNER JOIN [BC_Data].dbo.facilities f 
+            LEFT JOIN [BC_Data].dbo.facilities f 
                 ON m.FacilitiesID = f.FacilitiesID  
             WHERE m.period = @period`);
         res.json(result.recordset);       

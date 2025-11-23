@@ -32,25 +32,26 @@ router.get('/', async (req, res) => {
                 P.Rate, 
                 P.ConUp, 
                 P.ConAmount,
+                P.WarehouseName,
                 f.FacilitiesName,
                 (
                     SELECT TOP 1 prd.OrderNo 
                     FROM [JIData].dbo.PurRecDet AS prd
-                    INNER JOIN [JIData].dbo.PurRec AS pr ON pr.IDNo = prd.IDNo
+                    LEFT JOIN [JIData].dbo.PurRec AS pr ON pr.IDNo = prd.IDNo
                     WHERE pr.GRNo = P.GRNo
                     ORDER BY prd.IDNo
                 ) AS OrderNo,
                 (
                     SELECT TOP 1 prd.InvNo 
                     FROM [JIData].dbo.PurRecDet AS prd
-                    INNER JOIN [JIData].dbo.PurRec AS pr ON pr.IDNo = prd.IDNo
+                    LEFT JOIN [JIData].dbo.PurRec AS pr ON pr.IDNo = prd.IDNo
                     WHERE pr.GRNo = P.GRNo
                     ORDER BY prd.IDNo
                 ) AS InvNo
             FROM [BC_Data].dbo.Purchase AS P
-            INNER JOIN [BC_Data].dbo.Facilities AS f 
+            LEFT JOIN [BC_Data].dbo.Facilities AS f 
                 ON P.FacilitiesID = f.FacilitiesID
-            INNER JOIN [JIData].dbo.Inventory i 
+            LEFT JOIN [JIData].dbo.Inventory i 
                 ON P.ItemCode = i.PartNo 
             WHERE P.Period = @period`);
         res.json(result.recordset);
